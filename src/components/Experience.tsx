@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 
 const education = [
   {
-    degree: 'Bachelor of Software Engineering (Rekayasa Perangkat Lunak)',
+    degree: 'Undergraduate in Software Engineering (Rekayasa Perangkat Lunak)',
     institution: 'Universitas Pendidikan Indonesia (UPI)',
     period: 'Nov 2024 - 2028',
     gpa: '3.75 / 4.00',

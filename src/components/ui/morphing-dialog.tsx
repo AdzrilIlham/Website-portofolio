@@ -140,10 +140,10 @@ export function MorphingDialog() {
               }
             }}
             transition={{ type: "spring", stiffness: 350, damping: 30 }}
-            className="group relative flex flex-col text-left cursor-pointer bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/40 transition-all duration-300 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-1.5 active:scale-[0.98] select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]"
+            className="group relative flex flex-col text-left cursor-pointer bg-white border border-slate-200/80 hover:border-white transition-all duration-300 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-1.5 active:scale-[0.98] select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]"
           >
             {/* Image Preview Container */}
-            <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-black/20">
+            <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-100">
               <motion.div
                 layoutId={`image-wrap-${item.id}`}
                 className="w-full h-full"
@@ -165,15 +165,15 @@ export function MorphingDialog() {
             </div>
 
             {/* Card Footer Info */}
-            <div className="flex flex-1 p-5 sm:p-6 justify-between items-center gap-4 bg-white/10 border-t border-white/15 pointer-events-none">
+            <div className="flex flex-1 p-5 sm:p-6 justify-between items-center gap-4 bg-white border-t border-slate-100 pointer-events-none">
               <div className="min-w-0 w-full">
                 <motion.h3
-                  className="text-lg sm:text-xl font-bold text-[#E8E8E8] truncate group-hover:text-white transition-colors"
+                  className="text-lg sm:text-xl font-bold text-[#0F172A] truncate group-hover:text-[#1351AA] transition-colors"
                   layoutId={`title-${item.id}`}
                 >
                   {item.title}
                 </motion.h3>
-                <p className="text-xs sm:text-sm text-[#E8E8E8]/70 line-clamp-2 mt-1.5 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#0F172A]/70 line-clamp-2 mt-1.5 leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -203,11 +203,11 @@ export function MorphingDialog() {
                 <motion.div
                   layoutId={`card-${activeItem.id}`}
                   transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                  className="relative z-10 w-full max-w-3xl max-h-[88vh] flex flex-col rounded-3xl bg-[#0F172A] border border-white/25 text-[#E8E8E8] shadow-2xl overflow-hidden"
+                  className="relative z-10 w-full max-w-3xl max-h-[88vh] flex flex-col rounded-3xl bg-white border border-slate-200 text-[#0F172A] shadow-2xl overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Modal Header Image */}
-                  <div className="relative h-60 sm:h-80 w-full shrink-0 overflow-hidden bg-slate-950">
+                  <div className="relative h-60 sm:h-80 w-full shrink-0 overflow-hidden bg-slate-100">
                     <motion.div
                       layoutId={`image-wrap-${activeItem.id}`}
                       className="w-full h-full"
@@ -256,25 +256,25 @@ export function MorphingDialog() {
                     <div>
                       <motion.h2
                         layoutId={`title-${activeItem.id}`}
-                        className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight"
+                        className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0F172A] tracking-tight"
                       >
                         {activeItem.title}
                       </motion.h2>
-                      <p className="mt-2.5 text-base sm:text-lg text-[#E8E8E8]/80 leading-relaxed">
+                      <p className="mt-2.5 text-base sm:text-lg text-[#0F172A]/80 leading-relaxed">
                         {activeItem.description}
                       </p>
                     </div>
 
                     {/* Tech Stack Chips */}
                     <div>
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-[#F59E0B] mb-2.5">
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-[#1351AA] mb-2.5">
                         Technologies Used
                       </h4>
                       <div className="flex flex-wrap gap-2">
                         {activeItem.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 rounded-lg text-xs font-medium bg-white/10 text-white border border-white/15"
+                            className="px-3 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-[#0F172A] border border-slate-200"
                           >
                             {tech}
                           </span>
@@ -284,14 +284,14 @@ export function MorphingDialog() {
 
                     {/* Key Features */}
                     <div className="pt-2">
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-[#F59E0B] mb-3">
+                      <h4 className="text-xs font-bold uppercase tracking-wider text-[#1351AA] mb-3">
                         Key Highlights & Architecture
                       </h4>
                       <div className="grid gap-2.5">
                         {activeItem.features.map((feature, i) => (
                           <div
                             key={i}
-                            className="flex items-start gap-3 p-3.5 rounded-xl bg-white/5 border border-white/10 text-sm text-[#E8E8E8]/90 leading-relaxed"
+                            className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-[#0F172A]/90 leading-relaxed"
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] shrink-0 mt-2" />
                             <span>{feature}</span>
@@ -303,16 +303,16 @@ export function MorphingDialog() {
                     {/* Screenshot Gallery Preview (Khusus CleanWash: Mitra & Admin) */}
                     {activeItem.screenshots && activeItem.screenshots.length > 0 && (
                       <div className="pt-2 space-y-3">
-                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#F59E0B]">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-[#1351AA]">
                           Tampilan Antarmuka
                         </h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           {activeItem.screenshots.map((screen, idx) => (
                             <div
                               key={idx}
-                              className="group/screen relative rounded-2xl overflow-hidden border border-white/15 bg-slate-950/60 flex flex-col shadow-md"
+                              className="group/screen relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 flex flex-col shadow-sm"
                             >
-                              <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-950">
+                              <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
                                 <img
                                   src={screen.image}
                                   alt={screen.title}
@@ -324,8 +324,8 @@ export function MorphingDialog() {
                                   </span>
                                 </div>
                               </div>
-                              <div className="p-3 bg-white/5 border-t border-white/10">
-                                <p className="text-xs font-semibold text-[#E8E8E8] truncate">
+                              <div className="p-3 bg-white border-t border-slate-100">
+                                <p className="text-xs font-semibold text-[#0F172A] truncate">
                                   {screen.title}
                                 </p>
                               </div>
@@ -336,13 +336,13 @@ export function MorphingDialog() {
                     )}
 
                     {/* Action Links */}
-                    <div className="pt-4 flex flex-wrap gap-3 border-t border-white/15">
+                    <div className="pt-4 flex flex-wrap gap-3 border-t border-slate-200">
                       {activeItem.githubUrl && (
                         <a
                           href={activeItem.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-colors cursor-pointer"
+                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-[#0F172A] border border-slate-300 transition-colors cursor-pointer"
                         >
                           <GithubIcon className="w-4 h-4" /> View Source Code
                         </a>
