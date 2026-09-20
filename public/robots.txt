@@ -1,0 +1,33 @@
+# Robots.txt for https://adzrililham.vercel.app/
+
+# Standard Search Engine Crawlers
+User-agent: *
+Allow: /
+
+# AI Search Engines & LLM Crawlers (AEO / GEO Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# XML Sitemap Location
+Sitemap: https://adzrililham.vercel.app/sitemap.xml

@@ -1,0 +1,31 @@
+# Adzril Ilham Ramadhan (adzrililham)
+
+> Official Portfolio of Adzril Ilham Ramadhan — Software Engineering Student & Full-Stack Developer.
+
+## Summary
+- **Full Name**: Adzril Ilham Ramadhan
+- **Aliases**: Adzril, adzrililham, Adzril Ilham, adzlhrn
+- **Role**: Software Engineering Student & Full-Stack Developer
+- **University**: Universitas Pendidikan Indonesia (UPI)
+- **Degree**: Bachelor of Software Engineering (Expected 2028)
+- **GPA**: 3.75 / 4.00
+- **Location**: Bekasi, West Java, Indonesia
+- **Website**: https://adzrililham.vercel.app/
+- **Email**: adzril774@gmail.com
+
+## Core Technical Competencies
+- **Languages**: TypeScript, JavaScript, PHP, Python, Java, R, SQL
+- **Frontend**: React, Tailwind CSS, Motion, GSAP
+- **Backend**: Laravel 11, RESTful APIs, MySQL, Supabase
+- **Methodologies**: Object-Oriented Programming (OOP), SOLID Principles, Systems Architecture, UI/UX Prototyping (Figma)
+- **Tools**: Git, GitHub, VS Code, Postman, Apache NetBeans, RStudio
+
+## Notable Projects
+- **CleanWash**: On-Demand Laundry Marketplace built with Laravel 11, Tailwind CSS, MySQL, and Midtrans payment gateway.
+- **Smart Parking System**: Desktop parking management application developed in Java implementing OOP architecture and Swing GUI.
+- **ToDoo**: Fast productivity web application built with React, TypeScript, and Tailwind CSS.
+
+## Official Verification Profiles
+- GitHub: https://github.com/AdzrilIlham
+- LinkedIn: https://www.linkedin.com/in/adzril-ilham/
+- Instagram: https://instagram.com/adzlhrn
