@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Download } from 'lucide-react';
 import { ShinyButton } from "@/components/ui/shiny-button";
@@ -23,55 +22,45 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 );
 
 export default function Hero() {
-  const [textKey, setTextKey] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTextKey((prev) => prev + 1);
-    }, 60000);
-    return () => clearInterval(interval);
-  }, []);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
-        delayChildren: 0.1, // Beri waktu browser untuk merender layout awal
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 25 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const }, // Transisi easing yang lebih elegan dan natural
+      transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const },
     },
   };
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-20 lg:pb-0 overflow-hidden">
+    <section className="relative min-h-screen flex items-center pt-20 pb-16 lg:pb-0 overflow-hidden">
       <div className="container px-6 mx-auto md:px-12">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center"
         >
           {/* Kolom Kiri */}
           <div>
-          <motion.div variants={itemVariants} className="mb-4 inline-flex items-center gap-2 px-3 py-1 text-sm font-semibold rounded-full bg-[#0F172A]/10 text-[#0F172A] border border-[#0F172A]/15" style={{ willChange: "transform, opacity" }}>
+          <motion.div variants={itemVariants} className="mb-4 inline-flex items-center gap-2 px-3.5 py-1 text-xs sm:text-sm font-semibold rounded-full bg-[#0F172A]/10 text-[#0F172A] border border-[#0F172A]/15">
             <span className="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
             Available for Internship
           </motion.div>
           
           <motion.h1 
             variants={itemVariants}
-            className="text-5xl md:text-7xl font-bold tracking-tight text-[#0F172A] mb-6 leading-tight"
-            style={{ willChange: "transform, opacity" }}
+            className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-[#0F172A] mb-4 md:mb-6 leading-tight"
           >
             Hi, I'm <br className="hidden md:block" />
             <span className="relative inline-block">
@@ -83,23 +72,21 @@ export default function Hero() {
           </motion.h1>
 
           <TextAnimate
-            key={textKey}
             animation="blurIn"
             as="h2"
-            delay={0.5}
-            duration={0.9}
-            className="text-2xl md:text-3xl font-medium text-[#1351AA] mb-6"
+            delay={0.3}
+            duration={0.7}
+            className="text-xl sm:text-2xl md:text-3xl font-medium text-[#1351AA] mb-4 md:mb-6"
           >
             Software Engineering Student & Full-Stack Developer
           </TextAnimate>
 
-          {/* Foto Profil khusus Mobile & Tablet (< lg) — Posisi setelah subtitle */}
+          {/* Profile Photo for Mobile & Tablet (< lg) — Compact & Balanced */}
           <motion.div
             variants={itemVariants}
             className="lg:hidden my-6 flex justify-center"
-            style={{ willChange: "transform, opacity" }}
           >
-            <div className="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[3/4]">
+            <div className="relative w-44 sm:w-52 aspect-[3/4]">
               <img
                 src="/fotoAdzril.jpeg"
                 alt="Adzril Ilham Ramadhan"
@@ -108,13 +95,13 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          <motion.p variants={itemVariants} className="text-lg text-[#0F172A]/80 mb-10 max-w-2xl leading-relaxed" style={{ willChange: "transform, opacity" }}>
+          <motion.p variants={itemVariants} className="text-base sm:text-lg text-[#0F172A]/80 mb-8 max-w-2xl leading-relaxed">
             Detail-oriented student at Universitas Pendidikan Indonesia with core competencies in Data Analytics, 
             Data Engineering, and Full-Stack Web Development. Proven collaborative problem-solver seeking an 
             internship opportunity to deliver impactful, scalable technical solutions.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4" style={{ willChange: "transform, opacity" }}>
+          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4">
             <a href="#projects" className="btn-primary group">
               View Projects
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -131,7 +118,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Social Links */}
-          <motion.div variants={itemVariants} className="mt-10 flex flex-wrap items-center gap-4" style={{ willChange: "transform, opacity" }}>
+          <motion.div variants={itemVariants} className="mt-8 md:mt-10 flex flex-wrap items-center gap-4">
             <a 
               href="https://github.com/AdzrilIlham" 
               target="_blank" 

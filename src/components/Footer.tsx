@@ -18,12 +18,24 @@ export default function Footer() {
             <p className="text-[#E8E8E8]/75 mb-8 max-w-sm leading-relaxed">
               I am currently seeking an internship opportunity to deliver impactful, scalable technical solutions. Feel free to reach out.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#E8E8E8] hover:text-[#1351AA] transition-colors text-[#E8E8E8]">
-                <Network size={20} />
+            <div className="flex gap-3">
+              <a
+                href="https://github.com/AdzrilIlham"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-[#E8E8E8] hover:text-[#1351AA] transition-all text-[#E8E8E8] hover:scale-105"
+              >
+                <Code size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#E8E8E8] hover:text-[#1351AA] transition-colors text-[#E8E8E8]">
-                <Code size={20} />
+              <a
+                href="https://www.linkedin.com/in/adzril-ilham/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center hover:bg-[#E8E8E8] hover:text-[#1351AA] transition-all text-[#E8E8E8] hover:scale-105"
+              >
+                <Network size={18} />
               </a>
             </div>
           </motion.div>

@@ -9,7 +9,7 @@ const features = [
     description:
       "Building responsive, data-driven web applications from dynamic UI components to secure backend APIs and relational databases.",
     href: "#projects",
-    cta: "Lihat Proyek Terkait",
+    cta: "Explore Projects",
     tag: "Flagship",
     className: "lg:col-span-1 lg:row-span-2",
   },
@@ -19,7 +19,7 @@ const features = [
     description:
       "Designing normalized relational schemas, query indexation, and real-time data flows using MySQL and Supabase.",
     href: "#projects",
-    cta: "Lihat Proyek Terkait",
+    cta: "Explore Projects",
     tag: "Relational",
     className: "lg:col-span-1 lg:row-span-1",
   },
@@ -29,7 +29,7 @@ const features = [
     description:
       "Developing structured, modular software adhering to SOLID principles, design patterns, and clean code standards.",
     href: "#projects",
-    cta: "Lihat Proyek Terkait",
+    cta: "Explore Projects",
     tag: "SOLID",
     className: "lg:col-span-1 lg:row-span-1",
   },
@@ -39,7 +39,7 @@ const features = [
     description:
       "Extracting actionable insights, exploratory data processing, and statistical pipeline automation using Python & Pandas.",
     href: "#projects",
-    cta: "Lihat Proyek Terkait",
+    cta: "Explore Projects",
     tag: "Analytics",
     className: "lg:col-span-1 lg:row-span-1",
   },
@@ -49,7 +49,7 @@ const features = [
     description:
       "Crafting intuitive user interfaces, cohesive design systems, and rapid high-fidelity interactive wireframes in Figma.",
     href: "#projects",
-    cta: "Lihat Proyek Terkait",
+    cta: "Explore Projects",
     tag: "Design",
     className: "lg:col-span-1 lg:row-span-1",
   },
@@ -59,7 +59,7 @@ const features = [
     description:
       "Working effectively across agile sprint teams, code reviews, Git branching strategies, and continuous integration pipelines.",
     href: "#projects",
-    cta: "Lihat Proyek Terkait",
+    cta: "Explore Projects",
     tag: "Team & DevOps",
     className: "lg:col-span-3 lg:row-span-1",
   },

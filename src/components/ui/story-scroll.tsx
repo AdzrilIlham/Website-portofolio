@@ -92,10 +92,12 @@ export const FlowArt: React.FC<FlowArtProps> = ({
       );
       if (sections.length === 0) return;
 
+      const isMobile = window.innerWidth < 768;
       const triggers: ScrollTrigger[] = [];
       const sectionTriggers = new Map<string, ScrollTrigger>();
-      const isMobile = window.innerWidth < 768;
-      const initialRotation = isMobile ? 18 : 28;
+
+      // Distinct, stylish 3D rotation angle for both mobile and desktop (non-flat, dynamic card-flow)
+      const initialRotation = isMobile ? 5 : 4;
 
       sections.forEach((section, i) => {
         gsap.set(section, { zIndex: i + 1 });
@@ -111,12 +113,12 @@ export const FlowArt: React.FC<FlowArtProps> = ({
           gsap.set(inner, { rotation: rotationAngle, transformOrigin: origin });
           const tween = gsap.to(inner, {
             rotation: 0,
-            ease: 'none',
+            ease: 'power1.out',
             scrollTrigger: {
               trigger: section,
               start: 'top bottom',
               end: 'top 14%',
-              scrub: true,
+              scrub: 0.6, // Smooth interpolated scrub eliminates mobile touch stutter
             },
           });
           if (tween.scrollTrigger) {
@@ -135,6 +137,7 @@ export const FlowArt: React.FC<FlowArtProps> = ({
               end: 'bottom top',
               pin: true,
               pinSpacing: false,
+              anticipatePin: 1,
             }),
           );
         }

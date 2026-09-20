@@ -270,7 +270,17 @@ const integrations: IntegrationItem[] = [
   },
 ];
 
-const AnimatedPath = ({ d, id, isHighlighted }: { d: string; id: string; isHighlighted?: boolean }) => {
+const AnimatedPath = ({
+  d,
+  id,
+  delay = 0,
+  isHighlighted,
+}: {
+  d: string;
+  id: string;
+  delay?: number;
+  isHighlighted?: boolean;
+}) => {
   return (
     <>
       <path
@@ -292,7 +302,7 @@ const AnimatedPath = ({ d, id, isHighlighted }: { d: string; id: string; isHighl
           duration: isHighlighted ? 1.8 : 3.2,
           repeat: Infinity,
           ease: "linear",
-          delay: Math.random() * 2,
+          delay: delay,
         }}
       />
       <defs>
@@ -332,6 +342,7 @@ export function Integration() {
             key={integration.id}
             d={integration.path}
             id={`${containerId}-${integration.id}`}
+            delay={integration.delay}
             isHighlighted={activeNodeId === integration.id}
           />
         ))}
@@ -437,7 +448,7 @@ export function VisualContainer({ children, className }: VisualContainerProps) {
   return (
     <div
       className={cn(
-        "relative flex aspect-[1000/680] sm:aspect-[1000/580] md:aspect-[1000/520] min-h-[460px] sm:min-h-[560px] md:min-h-[640px] lg:min-h-[700px] w-full items-center justify-center overflow-hidden rounded-none bg-primary/3 p-4 sm:p-8",
+        "relative flex aspect-[1000/640] sm:aspect-[1000/560] md:aspect-[1000/520] min-h-[420px] sm:min-h-[520px] md:min-h-[600px] lg:min-h-[680px] w-full items-center justify-center overflow-hidden rounded-none bg-primary/3 p-2 sm:p-6 md:p-8",
         className,
       )}
     >
@@ -450,7 +461,6 @@ export function VisualContainer({ children, className }: VisualContainerProps) {
           backgroundSize: "30px 30px",
         }}
       />
-      {/* Top & Bottom Vignette Overlays removed for flat clean look */}
       <div className="relative z-10 flex h-full w-full items-center justify-center">
         {children}
       </div>
@@ -464,16 +474,16 @@ export const IntegrationCard = ({
   url,
 }: TeamCardProps) => {
   return (
-    <Card className="mx-auto flex w-full max-w-6xl lg:max-w-7xl flex-col rounded-3xl overflow-hidden p-0 ring-0 border border-primary/15 bg-white shadow-2xl gap-0 transition-all duration-300">
+    <Card className="mx-auto flex w-full max-w-6xl lg:max-w-7xl flex-col rounded-3xl overflow-hidden p-0 ring-0 border border-primary/15 bg-white shadow-xl hover:shadow-2xl gap-0 transition-all duration-300">
       <VisualContainer>{visual}</VisualContainer>
 
-      <CardContent className="p-6 sm:p-8 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-primary/10">
-        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-primary text-center sm:text-left">
+      <CardContent className="p-5 sm:p-7 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-5 border-t border-primary/10 bg-white">
+        <h3 className="text-lg sm:text-2xl md:text-3xl font-bold tracking-tight text-primary text-center sm:text-left">
           {title}
         </h3>
         <Button
           nativeButton={false}
-          className="h-12 w-full sm:w-fit rounded-full px-8 bg-primary text-offwhite hover:bg-primary-dark transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer font-semibold text-base shrink-0"
+          className="h-11 sm:h-12 w-full sm:w-fit rounded-full px-7 bg-primary text-offwhite hover:bg-primary-dark transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer font-semibold text-sm sm:text-base shrink-0"
           render={<a href={url} />}
         >
           Explore Projects
