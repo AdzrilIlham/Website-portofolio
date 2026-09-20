@@ -148,6 +148,21 @@ const experiences = [
   },
 ];
 
+// Pushpin SVG Icon (How-It-Works visual style)
+const Pin = ({ className }: { className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z" />
+  </svg>
+);
+
 // Circuit Cable Bridge physically connecting Card A to Card B with GPU-accelerated pulse
 const CircuitBridge = ({ index }: { index: number }) => {
   return (
@@ -520,10 +535,14 @@ export default function Experience() {
 
                   return (
                     <div key={uniqueKey} className="flex items-center">
-                      {/* Experience Card */}
+                      {/* Experience Card with Pinned How-It-Works Visual Style */}
                       <div
                         onMouseEnter={() => setActiveCardId(uniqueKey)}
-                        className="relative flex-shrink-0 w-[84vw] sm:w-[350px] md:w-[380px] flex flex-col group select-none"
+                        className={cn(
+                          "relative flex-shrink-0 w-[84vw] sm:w-[350px] md:w-[380px] flex flex-col group select-none transition-transform duration-300",
+                          index % 2 === 0 ? "rotate-1 hover:rotate-0" : "-rotate-1 hover:rotate-0",
+                          "hover:scale-[1.02]"
+                        )}
                       >
                         {/* Left Cable Input Port */}
                         <div
@@ -545,60 +564,76 @@ export default function Experience() {
                           <div className={cn("w-1.5 h-1.5 rounded-full", isActive ? "bg-primary" : "bg-primary/50")} />
                         </div>
 
-                        {/* Card Content (Crisp GPU-friendly background, zero layout thrashing) */}
+                        {/* Outer White Card Frame with Pushpin */}
                         <div
                           className={cn(
-                            "h-full min-h-[250px] bg-white rounded-2xl border p-5 shadow-xs transition-all duration-200 flex flex-col justify-between",
+                            "p-2.5 rounded-[26px] bg-white border shadow-md transition-all duration-300",
                             isActive
-                              ? "border-[#1351AA]/50 ring-2 ring-[#1351AA]/20 shadow-lg shadow-[#1351AA]/5 -translate-y-1"
-                              : "border-[#0F172A]/15 hover:border-[#1351AA]/30"
+                              ? "border-[#1351AA]/50 shadow-xl shadow-[#1351AA]/10"
+                              : "border-slate-200/90 hover:border-[#1351AA]/30"
                           )}
                         >
-                          <div>
-                            {/* Header Badges */}
-                            <div className="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-                              <span className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-semibold text-[#0F172A]/75 px-2.5 py-0.5 bg-[#0F172A]/5 rounded-full border border-[#0F172A]/15">
-                                <Calendar size={12} />
-                                {exp.period}
-                              </span>
-                              <span className="inline-block px-2.5 py-0.5 bg-[#1351AA]/10 text-[#1351AA] border border-[#1351AA]/20 rounded-full text-[11px] font-bold">
-                                {exp.category}
-                              </span>
-                            </div>
+                          {/* Centered Pushpin */}
+                          <Pin
+                            className={cn(
+                              "w-6 h-6 mx-auto mb-2 transition-colors duration-200",
+                              isActive ? "text-[#F59E0B]" : "text-[#1351AA]"
+                            )}
+                          />
 
-                            {/* Title & Organization — with HIMA RPL Logo if applicable */}
-                            <div className="flex items-start gap-3 mb-3">
-                              {exp.id === 'hima' && (
-                                <div className="shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-[#0F172A]/15 bg-white shadow-xs flex items-center justify-center p-1 overflow-hidden">
-                                  <img
-                                    src="/icons/himarpl.png"
-                                    alt="HIMA RPL UPI"
-                                    className="w-full h-full object-contain pointer-events-none"
-                                  />
+                          {/* Inner Container Card */}
+                          <div className="bg-slate-50/90 rounded-[18px] p-4 sm:p-5 border border-slate-200/80 flex flex-col justify-between min-h-[260px]">
+                            <div>
+                              {/* Header: Milestone Number + Badges */}
+                              <div className="flex items-center justify-between gap-2 mb-3">
+                                <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#1351AA]">
+                                  {String((index % experiences.length) + 1).padStart(2, '0')}
+                                </span>
+                                <div className="flex items-center gap-1.5">
+                                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#0F172A]/75 px-2.5 py-0.5 bg-white rounded-full border border-slate-200 shadow-xs">
+                                    <Calendar size={11} />
+                                    {exp.period}
+                                  </span>
+                                  <span className="inline-block px-2.5 py-0.5 bg-[#1351AA]/10 text-[#1351AA] border border-[#1351AA]/20 rounded-full text-[11px] font-bold">
+                                    {exp.category}
+                                  </span>
                                 </div>
-                              )}
-                              <div className="flex-1 min-w-0">
-                                <h3 className="text-base sm:text-lg font-bold text-primary mb-0.5 leading-snug">
-                                  {exp.role}
-                                </h3>
-                                <p className="text-xs font-semibold text-primary/70">
-                                  {exp.organization}
-                                </p>
                               </div>
-                            </div>
 
-                            {/* Bullet Points */}
-                            <ul className="space-y-1.5">
-                              {exp.points.map((point, i) => (
-                                <li
-                                  key={i}
-                                  className="text-primary/80 text-xs sm:text-[13px] leading-relaxed flex items-start gap-2"
-                                >
-                                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-                                  <span>{point}</span>
-                                </li>
-                              ))}
-                            </ul>
+                              {/* Title & Organization with Logo */}
+                              <div className="flex items-start gap-3 mb-3">
+                                {exp.id === 'hima' && (
+                                  <div className="shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-slate-200 bg-white shadow-xs flex items-center justify-center p-1 overflow-hidden">
+                                    <img
+                                      src="/icons/himarpl.png"
+                                      alt="HIMA RPL UPI"
+                                      className="w-full h-full object-contain pointer-events-none"
+                                    />
+                                  </div>
+                                )}
+                                <div className="flex-1 min-w-0">
+                                  <h3 className="text-base sm:text-lg font-bold text-[#0F172A] mb-0.5 leading-snug">
+                                    {exp.role}
+                                  </h3>
+                                  <p className="text-xs font-semibold text-[#1351AA]">
+                                    {exp.organization}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Bullet Points */}
+                              <ul className="space-y-1.5 pt-2 border-t border-slate-200/60">
+                                {exp.points.map((point, i) => (
+                                  <li
+                                    key={i}
+                                    className="text-[#0F172A]/80 text-xs sm:text-[13px] leading-relaxed flex items-start gap-2"
+                                  >
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#F59E0B] mt-1.5 shrink-0" />
+                                    <span>{point}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
                           </div>
                         </div>
                       </div>
