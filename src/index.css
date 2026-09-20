@@ -17,10 +17,6 @@
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   :root {
     background-color: var(--color-offwhite);
     color: var(--color-primary);

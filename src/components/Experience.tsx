@@ -460,17 +460,17 @@ export default function Experience() {
                 type="button"
                 onClick={() => scrollManual('left')}
                 aria-label="Scroll left"
-                className="p-2 sm:p-2.5 rounded-full border border-[#0F172A]/20 bg-white text-[#0F172A] hover:bg-[#1351AA] hover:text-white shadow-xs transition-all duration-200 cursor-pointer active:scale-95"
+                className="p-2.5 sm:p-2.5 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full border border-[#0F172A]/20 bg-white text-[#0F172A] hover:bg-[#1351AA] hover:text-white shadow-xs transition-all duration-200 cursor-pointer active:scale-95"
               >
-                <ChevronLeft size={16} />
+                <ChevronLeft size={18} />
               </button>
               <button
                 type="button"
                 onClick={() => scrollManual('right')}
                 aria-label="Scroll right"
-                className="p-2 sm:p-2.5 rounded-full border border-[#0F172A]/20 bg-white text-[#0F172A] hover:bg-[#1351AA] hover:text-white shadow-xs transition-all duration-200 cursor-pointer active:scale-95"
+                className="p-2.5 sm:p-2.5 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full border border-[#0F172A]/20 bg-white text-[#0F172A] hover:bg-[#1351AA] hover:text-white shadow-xs transition-all duration-200 cursor-pointer active:scale-95"
               >
-                <ChevronRight size={16} />
+                <ChevronRight size={18} />
               </button>
             </div>
           </div>

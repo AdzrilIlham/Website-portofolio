@@ -169,7 +169,7 @@ export default function Footer() {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#E8E8E8] text-[#1351AA] font-bold text-sm hover:bg-white hover:shadow-lg hover:scale-[1.01] active:scale-[0.98] transition-all duration-300 cursor-pointer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:py-3 rounded-xl bg-[#E8E8E8] text-[#1351AA] font-bold text-sm sm:text-base hover:bg-white hover:shadow-lg hover:scale-[1.01] active:scale-[0.98] transition-all duration-300 cursor-pointer"
                   >
                     <span>Send Message</span>
                     <Send size={16} />

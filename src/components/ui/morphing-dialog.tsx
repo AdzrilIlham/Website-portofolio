@@ -239,9 +239,9 @@ export function MorphingDialog() {
                         setActiveItem(null);
                       }}
                       aria-label="Close modal"
-                      className="absolute right-4 top-4 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black/85 text-white border border-white/20 flex items-center justify-center shadow-lg transition-all duration-200 cursor-pointer active:scale-90"
+                      className="absolute right-4 top-4 z-20 w-11 h-11 sm:w-10 sm:h-10 rounded-full bg-black/60 hover:bg-black/85 text-white border border-white/20 flex items-center justify-center shadow-lg transition-all duration-200 cursor-pointer active:scale-90"
                     >
-                      <X size={18} strokeWidth={2.5} />
+                      <X size={20} strokeWidth={2.5} />
                     </motion.button>
                   </div>
 
@@ -336,13 +336,13 @@ export function MorphingDialog() {
                     )}
 
                     {/* Action Links */}
-                    <div className="pt-4 flex flex-wrap gap-3 border-t border-slate-200">
+                    <div className="pt-4 flex flex-col sm:flex-row gap-3 border-t border-slate-200">
                       {activeItem.githubUrl && (
                         <a
                           href={activeItem.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-[#0F172A] border border-slate-300 transition-colors cursor-pointer"
+                          className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 sm:py-2.5 rounded-full text-sm sm:text-base font-semibold bg-slate-100 hover:bg-slate-200 text-[#0F172A] border border-slate-300 transition-colors cursor-pointer"
                         >
                           <GithubIcon className="w-4 h-4" /> View Source Code
                         </a>
@@ -352,7 +352,7 @@ export function MorphingDialog() {
                           href={activeItem.demoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold bg-[#1351AA] hover:bg-[#0e3b7c] text-white transition-colors cursor-pointer shadow-md"
+                          className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 sm:py-2.5 rounded-full text-sm sm:text-base font-semibold bg-[#1351AA] hover:bg-[#0e3b7c] text-white transition-colors cursor-pointer shadow-md"
                         >
                           <ExternalLink size={16} /> Live Demo
                         </a>

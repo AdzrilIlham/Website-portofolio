@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { motion } from "motion/react"
 import type { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { getSectionScrollPosition } from "@/components/ui/story-scroll"
+import { scrollToSection } from "@/components/ui/story-scroll"
 
 interface NavItem {
   name: string
@@ -75,32 +75,28 @@ export function NavBar({ items, className }: NavBarProps) {
     setActiveTab(name);
     isClickScrolling.current = true;
     if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    scrollTimeoutRef.current = setTimeout(() => {
-      isClickScrolling.current = false;
-    }, 700);
 
     const id = url.replace("#", "");
 
-    const pos = getSectionScrollPosition(id);
-    if (pos !== undefined) {
-      window.scrollTo({ top: pos, behavior: "smooth" });
-    } else {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+    scrollToSection(id, () => {
+      setActiveTab(name);
+      isClickScrolling.current = false;
+    });
+
+    scrollTimeoutRef.current = setTimeout(() => {
+      isClickScrolling.current = false;
+    }, 1400);
   };
 
   return (
     <nav
       aria-label="Main Navigation"
       className={cn(
-        "fixed bottom-0 sm:top-0 sm:bottom-auto left-1/2 -translate-x-1/2 z-50 mb-3 sm:mb-0 sm:pt-4 pb-[env(safe-area-inset-bottom,0px)] max-w-[calc(100vw-1rem)] pointer-events-none",
+        "fixed bottom-0 sm:top-0 sm:bottom-auto left-1/2 -translate-x-1/2 z-50 mb-4 sm:mb-0 sm:pt-4 pb-[env(safe-area-inset-bottom,0px)] max-w-[calc(100vw-0.75rem)] pointer-events-none",
         className,
       )}
     >
-      <div className="pointer-events-auto flex items-center gap-1 sm:gap-1.5 md:gap-2 bg-white/90 sm:bg-white/85 backdrop-blur-2xl backdrop-saturate-150 border border-slate-200/90 p-1 sm:p-1.5 md:py-1.5 md:px-2 rounded-full shadow-[0_10px_35px_rgba(0,0,0,0.12)]">
+      <div className="pointer-events-auto flex items-center gap-1 sm:gap-1.5 md:gap-2 bg-white/95 sm:bg-white/85 backdrop-blur-2xl backdrop-saturate-150 border border-slate-200/90 p-1.5 sm:p-1.5 md:py-1.5 md:px-2 rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.14)]">
         {items.map((item) => {
           const Icon = item.icon
           const isActive = activeTab === item.name
@@ -111,7 +107,7 @@ export function NavBar({ items, className }: NavBarProps) {
               href={item.url}
               onClick={(e) => handleNavClick(e, item.url, item.name)}
               className={cn(
-                "relative flex items-center justify-center cursor-pointer text-xs sm:text-sm font-semibold px-2.5 py-2 sm:px-3 sm:py-2 md:px-5 md:py-2 rounded-full transition-colors duration-200 select-none touch-manipulation",
+                "relative flex items-center justify-center cursor-pointer text-xs sm:text-sm font-semibold p-3 sm:px-3 sm:py-2 md:px-5 md:py-2 rounded-full transition-colors duration-200 select-none touch-manipulation min-w-[48px] min-h-[48px] sm:min-w-0 sm:min-h-0",
                 "text-slate-600 hover:text-[#1351AA] active:scale-95",
                 isActive && "text-[#1351AA] font-bold",
               )}
@@ -119,7 +115,7 @@ export function NavBar({ items, className }: NavBarProps) {
             >
               <span className="hidden md:inline">{item.name}</span>
               <span className="md:hidden">
-                <Icon size={19} strokeWidth={2.2} />
+                <Icon size={23} strokeWidth={2.3} />
               </span>
               {isActive && (
                 <motion.div
@@ -133,8 +129,8 @@ export function NavBar({ items, className }: NavBarProps) {
                   }}
                 >
                   {/* Lamp glow beam: On mobile top of icon, on desktop bottom of pill */}
-                  <div className="absolute -top-1.5 sm:-bottom-1.5 sm:top-auto left-1/2 -translate-x-1/2 w-7 h-1 bg-[#1351AA] rounded-full">
-                    <div className="absolute w-10 h-4 bg-[#1351AA]/25 rounded-full blur-sm -top-1 -left-1.5" />
+                  <div className="absolute -top-1.5 sm:-bottom-1.5 sm:top-auto left-1/2 -translate-x-1/2 w-8 sm:w-7 h-1 bg-[#1351AA] rounded-full">
+                    <div className="absolute w-10 h-4 bg-[#1351AA]/25 rounded-full blur-sm -top-1 -left-1" />
                   </div>
                 </motion.div>
               )}

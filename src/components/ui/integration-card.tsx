@@ -6,6 +6,7 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
+import { scrollToSection } from "@/components/ui/story-scroll";
 
 const buttonVariants = cva(
   "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
@@ -349,18 +350,18 @@ export function Integration() {
       </svg>
 
       {/* Center Profile Node (Larger, High Resolution) */}
-      <div className="absolute top-1/2 left-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl sm:rounded-3xl border-2 border-primary/25 bg-white p-1.5 shadow-xl sm:p-2.5 sm:shadow-2xl pointer-events-none">
-        <div className="overflow-hidden rounded-xl sm:rounded-2xl border border-primary/10 bg-offwhite">
+      <div className="absolute top-1/2 left-1/2 z-20 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl sm:rounded-2xl md:rounded-3xl border-2 border-primary/25 bg-white p-1 sm:p-1.5 md:p-2.5 shadow-md sm:shadow-xl md:shadow-2xl pointer-events-none">
+        <div className="overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl border border-primary/10 bg-offwhite">
           <img
             src="/fotoAdzril.jpeg"
             alt="Adzril Ilham Ramadhan"
             width={72}
             height={72}
-            className="size-11 sm:size-16 md:size-20 lg:size-22 object-cover object-center"
+            className="size-9 sm:size-13 md:size-18 lg:size-22 object-cover object-center"
           />
         </div>
         <motion.div
-          className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-primary/35"
+          className="absolute inset-0 rounded-xl sm:rounded-2xl md:rounded-3xl border-2 border-primary/35"
           animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0, 0.5] }}
           transition={{ duration: 2.8, repeat: Infinity }}
         />
@@ -402,9 +403,9 @@ export function Integration() {
                 setActiveNodeId((prev) => (prev === integration.id ? null : integration.id));
               }}
               className={cn(
-                "group relative flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 items-center justify-center rounded-xl sm:rounded-2xl border bg-white/95 shadow-sm transition-all duration-150 p-2 sm:p-2.5 md:p-3 cursor-pointer outline-none touch-manipulation",
+                "group relative flex w-[34px] h-[34px] sm:size-10 md:size-12 lg:size-16 items-center justify-center rounded-xl sm:rounded-xl md:rounded-2xl border bg-white/95 shadow-xs sm:shadow-sm transition-all duration-150 p-1.5 sm:p-2 md:p-2.5 lg:p-3 cursor-pointer outline-none touch-manipulation",
                 isActive
-                  ? "scale-115 shadow-xl border-primary ring-3 ring-primary/40 bg-white"
+                  ? "scale-115 shadow-xl border-primary ring-2 sm:ring-3 ring-primary/40 bg-white z-30"
                   : "border-primary/15 hover:scale-110 hover:shadow-lg hover:border-primary/40"
               )}
             >
@@ -483,8 +484,19 @@ export const IntegrationCard = ({
         </h3>
         <Button
           nativeButton={false}
-          className="h-11 sm:h-12 w-full sm:w-fit rounded-full px-7 bg-primary text-offwhite hover:bg-primary-dark transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer font-semibold text-sm sm:text-base shrink-0"
-          render={<a href={url} />}
+          className="h-12 sm:h-12 w-full sm:w-fit rounded-full px-8 py-3.5 sm:py-2.5 bg-primary text-offwhite hover:bg-primary-dark transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer font-bold text-base shrink-0"
+          render={
+            <a
+              href={url}
+              onClick={(e) => {
+                if (url.startsWith('#')) {
+                  e.preventDefault();
+                  const targetId = url.replace('#', '');
+                  scrollToSection(targetId);
+                }
+              }}
+            />
+          }
         >
           Explore Projects
         </Button>

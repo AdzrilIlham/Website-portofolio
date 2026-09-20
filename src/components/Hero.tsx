@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, Mail } from 'lucide-react';
 import { ShinyButton } from "@/components/ui/shiny-button";
 import { TextAnimate } from "@/components/ui/text-animate";
-import { getSectionScrollPosition } from "@/components/ui/story-scroll";
+import { scrollToSection } from "@/components/ui/story-scroll";
 
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -23,17 +23,14 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 );
 
 export default function Hero() {
+  const handleProjectsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    scrollToSection('projects');
+  };
+
   const handleContactClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    const pos = getSectionScrollPosition('contact');
-    if (pos !== undefined) {
-      window.scrollTo({ top: pos, behavior: 'smooth' });
-    } else {
-      const el = document.getElementById('contact');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    scrollToSection('contact');
   };
 
   const containerVariants = {
@@ -115,17 +112,17 @@ export default function Hero() {
             internship opportunity to deliver impactful, scalable technical solutions.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4">
-            <a href="#projects" className="btn-primary group">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            <a href="#projects" onClick={handleProjectsClick} className="btn-primary group w-full sm:w-auto py-4 sm:py-3.5 px-7 sm:px-6 text-base font-bold shadow-md">
               View Projects
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2.5 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <ShinyButton 
               href="#contact" 
               onClick={handleContactClick}
-              className="inline-flex h-auto"
+              className="inline-flex h-auto w-full sm:w-auto py-4 sm:py-3.5 px-7 sm:px-6 text-base font-bold shadow-sm"
             >
-              <Mail className="mr-2 w-5 h-5" />
+              <Mail className="mr-2.5 w-5 h-5" />
               CONTACT ME
             </ShinyButton>
           </motion.div>
