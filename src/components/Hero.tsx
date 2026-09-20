@@ -1,7 +1,8 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
 import { ShinyButton } from "@/components/ui/shiny-button";
 import { TextAnimate } from "@/components/ui/text-animate";
+import { getSectionScrollPosition } from "@/components/ui/story-scroll";
 
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -22,6 +23,19 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 );
 
 export default function Hero() {
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const pos = getSectionScrollPosition('contact');
+    if (pos !== undefined) {
+      window.scrollTo({ top: pos, behavior: 'smooth' });
+    } else {
+      const el = document.getElementById('contact');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -107,13 +121,12 @@ export default function Hero() {
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             <ShinyButton 
-              href="/CV_ATS_Adzril_Ilham_Ramadhan.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer"
+              href="#contact" 
+              onClick={handleContactClick}
               className="inline-flex h-auto"
             >
-              <Download className="mr-2 w-5 h-5" />
-              View Resume
+              <Mail className="mr-2 w-5 h-5" />
+              CONTACT ME
             </ShinyButton>
           </motion.div>
 

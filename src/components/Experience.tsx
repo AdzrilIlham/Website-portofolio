@@ -4,7 +4,6 @@ import {
   Briefcase,
   GraduationCap,
   Calendar,
-  Award,
   BookOpen,
   Layers,
   ChevronLeft,
@@ -17,7 +16,6 @@ const education = [
     degree: 'Undergraduate in Software Engineering (Rekayasa Perangkat Lunak)',
     institution: 'Universitas Pendidikan Indonesia (UPI)',
     period: 'Nov 2024 - 2028',
-    gpa: '3.75 / 4.00',
     coursework: [
       'Object-Oriented Programming',
       'Database Systems',
@@ -395,10 +393,6 @@ export default function Experience() {
                         <Calendar size={13} />
                         {edu.period}
                       </span>
-                      <div className="inline-flex items-center gap-1.5 px-3 py-0.5 bg-[#F59E0B] text-[#0F172A] border border-[#F59E0B] rounded-full text-xs font-bold shadow-xs w-fit">
-                        <Award size={14} />
-                        GPA: {edu.gpa}
-                      </div>
                     </div>
 
                     <h3 className="text-lg sm:text-xl font-bold text-primary mb-0.5">
