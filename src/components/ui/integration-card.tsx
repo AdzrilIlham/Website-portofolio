@@ -104,27 +104,37 @@ const tooltipPlacement: Record<
   },
 };
 
-// 16 Real Technologies in full original brand colors (Canvas 1000x520, Center: 500, 260)
+// 19 Real Technologies in full original brand colors (Canvas 1000x520, Center: 500, 260)
 const integrations: IntegrationItem[] = [
-  // Sisi Kiri (8 nodes)
+  // Sisi Kiri (9 nodes - Wide Spacing, Zero Overlap)
   {
     id: "figma",
     name: "Figma",
     icon: "/icons/figma.svg",
     direction: "right",
-    x: 90,
-    y: 75,
-    path: "M 450 220 H 440 Q 425 220 425 205 V 90 Q 425 75 410 75 H 90",
+    x: 70,
+    y: 65,
+    path: "M 450 205 H 85 Q 70 205 70 190 V 65",
     delay: 0.1,
+  },
+  {
+    id: "cpp",
+    name: "C++",
+    icon: "/icons/cpp.svg",
+    direction: "right",
+    x: 70,
+    y: 195,
+    path: "M 450 235 H 200 Q 185 235 185 220 V 210 Q 185 195 170 195 H 70",
+    delay: 0.12,
   },
   {
     id: "vscode",
     name: "VS Code",
     icon: "/icons/vscode.svg",
     direction: "top",
-    x: 230,
-    y: 120,
-    path: "M 450 230 H 350 Q 335 230 335 215 V 135 Q 335 120 320 120 H 230",
+    x: 250,
+    y: 110,
+    path: "M 450 215 H 265 Q 250 215 250 200 V 110",
     delay: 0.15,
   },
   {
@@ -132,9 +142,9 @@ const integrations: IntegrationItem[] = [
     name: "React",
     icon: "/icons/react.svg",
     direction: "top",
-    x: 360,
-    y: 165,
-    path: "M 450 240 H 415 Q 400 240 400 225 V 180 Q 400 165 385 165 H 360",
+    x: 370,
+    y: 155,
+    path: "M 450 225 H 385 Q 370 225 370 210 V 155",
     delay: 0.2,
   },
   {
@@ -142,9 +152,9 @@ const integrations: IntegrationItem[] = [
     name: "JavaScript",
     icon: "/icons/javascript.svg",
     direction: "top",
-    x: 210,
-    y: 235,
-    path: "M 450 252 H 290 Q 275 252 275 243.5 V 243.5 Q 275 235 260 235 H 210",
+    x: 230,
+    y: 260,
+    path: "M 450 260 H 230",
     delay: 0.25,
   },
   {
@@ -152,9 +162,9 @@ const integrations: IntegrationItem[] = [
     name: "Tailwind CSS",
     icon: "/icons/tailwindcss.svg",
     direction: "right",
-    x: 80,
-    y: 275,
-    path: "M 450 268 H 160 Q 145 268 145 271.5 V 271.5 Q 145 275 130 275 H 80",
+    x: 70,
+    y: 325,
+    path: "M 450 285 H 200 Q 185 285 185 300 V 310 Q 185 325 170 325 H 70",
     delay: 0.3,
   },
   {
@@ -162,9 +172,9 @@ const integrations: IntegrationItem[] = [
     name: "TypeScript",
     icon: "/icons/typescript.svg",
     direction: "bottom",
-    x: 360,
-    y: 355,
-    path: "M 450 280 H 415 Q 400 280 400 295 V 340 Q 400 355 385 355 H 360",
+    x: 370,
+    y: 365,
+    path: "M 450 295 H 385 Q 370 295 370 310 V 365",
     delay: 0.35,
   },
   {
@@ -172,9 +182,9 @@ const integrations: IntegrationItem[] = [
     name: "Git",
     icon: "/icons/git.svg",
     direction: "bottom",
-    x: 230,
-    y: 400,
-    path: "M 450 290 H 350 Q 335 290 335 305 V 385 Q 335 400 320 400 H 230",
+    x: 250,
+    y: 410,
+    path: "M 450 305 H 265 Q 250 305 250 320 V 410",
     delay: 0.4,
   },
   {
@@ -182,31 +192,41 @@ const integrations: IntegrationItem[] = [
     name: "GitHub",
     icon: "/icons/github.svg",
     direction: "right",
-    x: 90,
-    y: 445,
-    path: "M 450 300 H 440 Q 425 300 425 315 V 430 Q 425 445 410 445 H 90",
+    x: 70,
+    y: 455,
+    path: "M 450 315 H 85 Q 70 315 70 330 V 455",
     delay: 0.45,
   },
 
-  // Sisi Kanan (8 nodes)
+  // Sisi Kanan (10 nodes - Wide Spacing, Zero Overlap)
   {
     id: "rstudio",
     name: "RStudio",
     icon: "/icons/rstudio.svg",
     direction: "left",
-    x: 910,
-    y: 75,
-    path: "M 550 220 H 560 Q 575 220 575 205 V 90 Q 575 75 590 75 H 910",
+    x: 930,
+    y: 65,
+    path: "M 550 205 H 915 Q 930 205 930 190 V 65",
     delay: 0.1,
+  },
+  {
+    id: "streamlit",
+    name: "Streamlit",
+    icon: "/icons/streamlit.svg",
+    direction: "bottom",
+    x: 710,
+    y: 65,
+    path: "M 550 225 H 695 Q 710 225 710 210 V 65",
+    delay: 0.12,
   },
   {
     id: "python",
     name: "Python",
     icon: "/icons/python.svg",
     direction: "top",
-    x: 770,
-    y: 120,
-    path: "M 550 230 H 650 Q 665 230 665 215 V 135 Q 665 120 680 120 H 770",
+    x: 830,
+    y: 155,
+    path: "M 550 215 H 815 Q 830 215 830 200 V 155",
     delay: 0.15,
   },
   {
@@ -214,9 +234,9 @@ const integrations: IntegrationItem[] = [
     name: "Laravel",
     icon: "/icons/laravel.svg",
     direction: "top",
-    x: 640,
-    y: 165,
-    path: "M 550 240 H 585 Q 600 240 600 225 V 180 Q 600 165 615 165 H 640",
+    x: 630,
+    y: 155,
+    path: "M 550 235 H 615 Q 630 235 630 220 V 155",
     delay: 0.2,
   },
   {
@@ -224,9 +244,9 @@ const integrations: IntegrationItem[] = [
     name: "Postman",
     icon: "/icons/postman.svg",
     direction: "top",
-    x: 790,
-    y: 235,
-    path: "M 550 252 H 710 Q 725 252 725 243.5 V 243.5 Q 725 235 740 235 H 790",
+    x: 730,
+    y: 260,
+    path: "M 550 260 H 730",
     delay: 0.25,
   },
   {
@@ -234,9 +254,9 @@ const integrations: IntegrationItem[] = [
     name: "R Language",
     icon: "/icons/r.svg",
     direction: "left",
-    x: 920,
-    y: 275,
-    path: "M 550 268 H 840 Q 855 268 855 271.5 V 271.5 Q 855 275 870 275 H 920",
+    x: 930,
+    y: 205,
+    path: "M 550 245 H 870 Q 885 245 885 230 V 220 Q 885 205 900 205 H 930",
     delay: 0.3,
   },
   {
@@ -244,19 +264,29 @@ const integrations: IntegrationItem[] = [
     name: "MySQL",
     icon: "/icons/mysql.svg",
     direction: "bottom",
-    x: 640,
-    y: 355,
-    path: "M 550 280 H 585 Q 600 280 600 295 V 340 Q 600 355 615 355 H 640",
+    x: 630,
+    y: 365,
+    path: "M 550 285 H 615 Q 630 285 630 300 V 365",
     delay: 0.35,
+  },
+  {
+    id: "php",
+    name: "PHP",
+    icon: "/icons/php.svg",
+    direction: "left",
+    x: 930,
+    y: 340,
+    path: "M 550 275 H 870 Q 885 275 885 290 V 325 Q 885 340 900 340 H 930",
+    delay: 0.38,
   },
   {
     id: "java",
     name: "Java",
     icon: "/icons/java.svg",
     direction: "bottom",
-    x: 770,
-    y: 400,
-    path: "M 550 290 H 650 Q 665 290 665 305 V 385 Q 665 400 680 400 H 770",
+    x: 760,
+    y: 415,
+    path: "M 550 295 H 745 Q 760 295 760 310 V 415",
     delay: 0.4,
   },
   {
@@ -264,9 +294,9 @@ const integrations: IntegrationItem[] = [
     name: "Apache NetBeans",
     icon: "/icons/netbeans.svg",
     direction: "left",
-    x: 910,
-    y: 445,
-    path: "M 550 300 H 560 Q 575 300 575 315 V 430 Q 575 445 590 445 H 910",
+    x: 930,
+    y: 455,
+    path: "M 550 315 H 915 Q 930 315 930 330 V 455",
     delay: 0.45,
   },
 ];
@@ -367,7 +397,7 @@ export function Integration() {
         />
       </div>
 
-      {/* 16 Peripheral Technology Nodes (1-Tap Mobile + Instant Desktop Hover + Directional Tooltip) */}
+      {/* 19 Peripheral Technology Nodes (1-Tap Mobile + Instant Desktop Hover + Directional Tooltip) */}
       {integrations.map((integration) => {
         const isActive = activeNodeId === integration.id;
         const placement = tooltipPlacement[integration.direction];
@@ -403,7 +433,7 @@ export function Integration() {
                 setActiveNodeId((prev) => (prev === integration.id ? null : integration.id));
               }}
               className={cn(
-                "group relative flex w-[34px] h-[34px] sm:size-10 md:size-12 lg:size-16 items-center justify-center rounded-xl sm:rounded-xl md:rounded-2xl border bg-white/95 shadow-xs sm:shadow-sm transition-all duration-150 p-1.5 sm:p-2 md:p-2.5 lg:p-3 cursor-pointer outline-none touch-manipulation",
+                "group relative flex w-[30px] h-[30px] sm:size-10 md:size-12 lg:size-16 items-center justify-center rounded-xl sm:rounded-xl md:rounded-2xl border bg-white/95 shadow-xs sm:shadow-sm transition-all duration-150 p-1 sm:p-2 md:p-2.5 lg:p-3 cursor-pointer outline-none touch-manipulation",
                 isActive
                   ? "scale-115 shadow-xl border-primary ring-2 sm:ring-3 ring-primary/40 bg-white z-30"
                   : "border-primary/15 hover:scale-110 hover:shadow-lg hover:border-primary/40"
@@ -434,7 +464,7 @@ export function Integration() {
                 src={integration.icon}
                 alt={integration.name}
                 className="h-full w-full object-contain pointer-events-none select-none"
-                loading="lazy"
+                loading="eager"
                 draggable={false}
               />
             </button>

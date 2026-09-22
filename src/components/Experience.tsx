@@ -120,15 +120,15 @@ const experiences = [
   },
   {
     id: 'journal',
-    role: 'Predatory Journal Detection System',
-    organization: 'Basic Programming — Python',
-    category: 'Python',
-    period: '2024',
-    year: '2024',
+    role: 'LaporJurnal — Scientific Journal Integrity Platform',
+    organization: 'Python & Service-Oriented Architecture (SOA)',
+    category: 'Python & SOA',
+    period: '2025',
+    year: '2025',
     points: [
-      'Developed a basic system related to predatory journal identification using Python.',
-      'Applied fundamental programming concepts to process and manage journal-related data.',
-      'Implemented the project as part of the Basic Programming course.',
+      'Developed LaporJurnal to detect and report predatory and hijacked academic journals with dual interface (Streamlit GUI & CLI).',
+      'Engineered resilient data layer with atomic writes and cross-process file locking for concurrent CSV data integrity.',
+      'Implemented Service-Oriented Architecture (SOA) and robust security with PBKDF2-HMAC-SHA256 password hashing.',
     ],
   },
   {
@@ -534,7 +534,7 @@ export default function Experience() {
                         onMouseEnter={() => setActiveCardId(uniqueKey)}
                         className={cn(
                           "relative flex-shrink-0 w-[84vw] sm:w-[350px] md:w-[380px] flex flex-col group select-none transition-transform duration-300",
-                          index % 2 === 0 ? "rotate-1 hover:rotate-0" : "-rotate-1 hover:rotate-0",
+                          "rotate-0",
                           "hover:scale-[1.02]"
                         )}
                       >

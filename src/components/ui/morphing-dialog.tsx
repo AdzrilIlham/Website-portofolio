@@ -30,6 +30,65 @@ export type ProjectItem = {
 
 const PROJECTS: ProjectItem[] = [
   {
+    id: "laporjurnal",
+    title: "LaporJurnal",
+    tag: "Python & Streamlit",
+    image: "/LP1.png",
+    description:
+      "Platform sistem informasi berbasis Python untuk mengidentifikasi, melaporkan, serta menelaah indikasi praktik jurnal ilmiah predator dan jurnal kloning (hijacked journal) melalui Web GUI Modern dan Interactive CLI.",
+    technologies: [
+      "Python 3.12",
+      "Streamlit",
+      "Interactive CLI",
+      "SOA Architecture",
+      "PBKDF2-HMAC-SHA256",
+      "Atomic CSV Storage",
+      "Unit Testing",
+    ],
+    features: [
+      "Dual Interface Terpadu: Web GUI Modern (Streamlit) responsif dengan Dark/Light Mode dan Interactive CLI berbasis shell cepat.",
+      "Multi-Role Ecosystem: Akses komprehensif bagi Publik/Tamu, Pengguna (User), Validator/Kurator Akademik, dan Administrator.",
+      "Pencarian Cerdas & Verifikasi: Normalisasi URL otomatis (protokol, domain, trailing slash) dan pencarian instan nama jurnal.",
+      "Service-Oriented Architecture (SOA): JournalService terpusat sebagai single source of truth antara GUI dan CLI.",
+      "Data Concurrency & Resilience: Atomic write (tempfile + os.replace) dan cross-process file locking (fcntl) guna mencegah kerusakan data.",
+      "Keamanan Kredensial Standar Industri: PBKDF2-HMAC-SHA256 (100.000 iterasi) dengan random salt 16-byte dan auto-upgrade hash.",
+    ],
+    screenshots: [
+      {
+        title: "Dasbor Administrator: Ringkasan Analitik & Metrik Sistem",
+        badge: "Admin",
+        image: "/LP2.png",
+      },
+      {
+        title: "Dasbor Administrator: Manajemen Seluruh Berkas Laporan Jurnal",
+        badge: "Admin",
+        image: "/LP3.png",
+      },
+      {
+        title: "Dasbor Validator: Antrean Klaim Berkas Laporan Jurnal Masuk",
+        badge: "Validator",
+        image: "/LP4.png",
+      },
+      {
+        title: "Dasbor Validator: Antarmuka Evaluasi & Kurasi Integritas Ilmiah",
+        badge: "Validator",
+        image: "/LP5.png",
+      },
+      {
+        title: "Dasbor Pengguna: Pelacakan Status Riwayat Laporan Saya",
+        badge: "User",
+        image: "/LP6.png",
+      },
+      {
+        title: "Dasbor Pengguna: Formulir Pengajuan Laporan Jurnal (Opsi Anonim)",
+        badge: "User",
+        image: "/LP7.png",
+      },
+    ],
+    githubUrl: "https://github.com/AdzrilIlham/LaporJurnal",
+    demoUrl: "#",
+  },
+  {
     id: "cleanwash",
     title: "CleanWash",
     tag: "Laravel & Tailwind",
@@ -125,7 +184,7 @@ export function MorphingDialog() {
   return (
     <div className="w-full">
       {/* Project Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-6xl mx-auto">
         {PROJECTS.map((item) => (
           <motion.div
             key={item.id}
@@ -142,17 +201,17 @@ export function MorphingDialog() {
             transition={{ type: "spring", stiffness: 350, damping: 30 }}
             className="group relative flex flex-col text-left cursor-pointer bg-white border border-slate-200/80 hover:border-white transition-all duration-300 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl hover:-translate-y-1.5 active:scale-[0.98] select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]"
           >
-            {/* Image Preview Container */}
-            <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-slate-100">
+            {/* Image Preview Container (No Crop - Object Contain with Clean Backdrop) */}
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-950 flex items-center justify-center p-2 sm:p-2.5">
               <motion.div
                 layoutId={`image-wrap-${item.id}`}
-                className="w-full h-full"
+                className="w-full h-full flex items-center justify-center"
               >
                 <img
                   alt={item.title}
                   src={item.image}
                   draggable={false}
-                  className="h-full w-full object-cover object-center pointer-events-none select-none group-hover:scale-105 transition-transform duration-500"
+                  className="h-full w-full object-contain object-center pointer-events-none select-none group-hover:scale-[1.02] transition-transform duration-500"
                 />
               </motion.div>
 
@@ -206,17 +265,17 @@ export function MorphingDialog() {
                   className="relative z-10 w-full max-w-3xl max-h-[88vh] flex flex-col rounded-3xl bg-white border border-slate-200 text-[#0F172A] shadow-2xl overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {/* Modal Header Image */}
-                  <div className="relative h-60 sm:h-80 w-full shrink-0 overflow-hidden bg-slate-100">
+                  {/* Modal Header Image (Full View - Never Cropped) */}
+                  <div className="relative w-full aspect-[16/10] max-h-[460px] shrink-0 overflow-hidden bg-slate-950 flex items-center justify-center p-3 sm:p-4">
                     <motion.div
                       layoutId={`image-wrap-${activeItem.id}`}
-                      className="w-full h-full"
+                      className="w-full h-full flex items-center justify-center"
                     >
                       <img
                         alt={activeItem.title}
                         src={activeItem.image}
                         draggable={false}
-                        className="h-full w-full object-cover object-center select-none"
+                        className="h-full w-full object-contain object-center select-none"
                       />
                     </motion.div>
 
@@ -300,7 +359,7 @@ export function MorphingDialog() {
                       </div>
                     </div>
 
-                    {/* Screenshot Gallery Preview (Khusus CleanWash: Mitra & Admin) */}
+                    {/* Screenshot Gallery Preview */}
                     {activeItem.screenshots && activeItem.screenshots.length > 0 && (
                       <div className="pt-2 space-y-3">
                         <h4 className="text-xs font-bold uppercase tracking-wider text-[#1351AA]">
@@ -312,11 +371,11 @@ export function MorphingDialog() {
                               key={idx}
                               className="group/screen relative rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 flex flex-col shadow-sm"
                             >
-                              <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100">
+                              <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-950 flex items-center justify-center p-1.5 sm:p-2">
                                 <img
                                   src={screen.image}
                                   alt={screen.title}
-                                  className="w-full h-full object-cover object-center group-hover/screen:scale-105 transition-transform duration-500"
+                                  className="w-full h-full object-contain object-center group-hover/screen:scale-[1.02] transition-transform duration-500"
                                 />
                                 <div className="absolute top-2.5 left-2.5">
                                   <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#F59E0B] text-[#0F172A] shadow-md border border-[#F59E0B]/40">

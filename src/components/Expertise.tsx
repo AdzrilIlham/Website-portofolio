@@ -37,7 +37,7 @@ const features = [
     Icon: Layers,
     name: "Data Analytics & Processing",
     description:
-      "Extracting actionable insights, exploratory data processing, and statistical pipeline automation using Python & Pandas.",
+      "Extracting actionable insights, interactive web apps, and statistical data processing using Python, Streamlit & Pandas.",
     href: "#projects",
     cta: "Explore Projects",
     tag: "Analytics",

@@ -13,13 +13,14 @@
 - **Email**: adzril774@gmail.com
 
 ## Core Technical Competencies
-- **Languages**: TypeScript, JavaScript, PHP, Python, Java, R, SQL
-- **Frontend**: React, Tailwind CSS, Motion, GSAP
-- **Backend**: Laravel 11, RESTful APIs, MySQL, Supabase
+- **Languages**: TypeScript, JavaScript, PHP, Python, Java, C++, R, SQL
+- **Frontend & App Frameworks**: React, Streamlit, Tailwind CSS, Motion, GSAP
+- **Backend**: Laravel 11, RESTful APIs, MySQL, Supabase, Streamlit
 - **Methodologies**: Object-Oriented Programming (OOP), SOLID Principles, Systems Architecture, UI/UX Prototyping (Figma)
 - **Tools**: Git, GitHub, VS Code, Postman, Apache NetBeans, RStudio
 
 ## Notable Projects
+- **LaporJurnal**: Scientific Journal Integrity Verification & Reporting Platform built with Python 3.12, Streamlit Web GUI, Interactive CLI, and Service-Oriented Architecture (SOA) with resilient atomic CSV storage and PBKDF2 hashing.
 - **CleanWash**: On-Demand Laundry Marketplace built with Laravel 11, Tailwind CSS, MySQL, and Midtrans payment gateway.
 - **Smart Parking System**: Desktop parking management application developed in Java implementing OOP architecture and Swing GUI.
 - **ToDoo**: Fast productivity web application built with React, TypeScript, and Tailwind CSS.

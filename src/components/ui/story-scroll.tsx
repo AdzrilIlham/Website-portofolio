@@ -125,12 +125,8 @@ export const FlowArt: React.FC<FlowArtProps> = ({
       );
       if (sections.length === 0) return;
 
-      const isMobile = window.innerWidth < 768;
       const triggers: ScrollTrigger[] = [];
       const sectionTriggers = new Map<string, ScrollTrigger>();
-
-      // Distinct, stylish 3D rotation angle for both mobile and desktop (non-flat, dynamic card-flow)
-      const initialRotation = isMobile ? 5 : 4;
 
       sections.forEach((section, i) => {
         gsap.set(section, { zIndex: i + 1 });
@@ -138,27 +134,19 @@ export const FlowArt: React.FC<FlowArtProps> = ({
         const inner = section.querySelector<HTMLElement>('.flow-art-container');
         if (!inner) return;
 
-        if (i > 0) {
-          const isOdd = i % 2 === 1;
-          const origin = isOdd ? 'bottom left' : 'bottom right';
-          const rotationAngle = isOdd ? initialRotation : -initialRotation;
+        // Ensure 0 degrees straight/flat alignment at all times (no tilt on scroll)
+        gsap.set(inner, { rotation: 0, transformOrigin: 'center center' });
 
-          gsap.set(inner, { rotation: rotationAngle, transformOrigin: origin });
-          const tween = gsap.to(inner, {
-            rotation: 0,
-            ease: 'power1.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top bottom',
-              end: 'top 14%',
-              scrub: 0.6, // Smooth interpolated scrub eliminates mobile touch stutter
-            },
+        if (i > 0) {
+          const trigger = ScrollTrigger.create({
+            trigger: section,
+            start: 'top bottom',
+            end: 'top 14%',
+            scrub: 0.6,
           });
-          if (tween.scrollTrigger) {
-            triggers.push(tween.scrollTrigger);
-            if (section.id) {
-              sectionTriggers.set(section.id, tween.scrollTrigger);
-            }
+          triggers.push(trigger);
+          if (section.id) {
+            sectionTriggers.set(section.id, trigger);
           }
         }
 
