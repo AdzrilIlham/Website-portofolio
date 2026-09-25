@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { X, ExternalLink } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
@@ -153,13 +153,15 @@ const PROJECTS: ProjectItem[] = [
   },
 ];
 
+const emptySubscribe = () => () => {};
+
 export function MorphingDialog() {
   const [activeItem, setActiveItem] = useState<ProjectItem | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 
   // Body scroll lock & ESC key listener
   useEffect(() => {

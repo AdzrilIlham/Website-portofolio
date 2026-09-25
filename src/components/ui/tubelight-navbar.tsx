@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { motion } from "motion/react"
 import type { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { scrollToSection } from "@/components/ui/story-scroll"
+import { scrollToSection } from "@/lib/scroll"
 
 interface NavItem {
   name: string

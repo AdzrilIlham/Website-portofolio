@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, Mail } from 'lucide-react';
 import { ShinyButton } from "@/components/ui/shiny-button";
 import { TextAnimate } from "@/components/ui/text-animate";
-import { scrollToSection } from "@/components/ui/story-scroll";
+import { scrollToSection } from "@/lib/scroll";
 
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
