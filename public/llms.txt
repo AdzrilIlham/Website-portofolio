@@ -25,6 +25,12 @@
 - **Smart Parking System**: Desktop parking management application developed in Java implementing OOP architecture and Swing GUI.
 - **ToDoo**: Fast productivity web application built with React, TypeScript, and Tailwind CSS.
 
+## Licenses & Certifications
+- **Finalis Perlombaan UI/UX**: Awarded by Himpunan Mahasiswa Teknik Informatika UNISSULA (July 2025). Focus: UI/UX design, prototyping, and user experience evaluation.
+- **Java for Object Oriented Programming**: Issued by Wajar.id in collaboration with Universitas Pendidikan Indonesia (December 2024). Focus: OOP fundamentals, design patterns, and clean code.
+- **Backend Development Fundamental**: Issued by MySkill Short Class (September 2024, Credential ID: 186940/WEB/LM/09/2024). Focus: Backend architecture and API development.
+- **Algoritma Pemrograman Course**: Issued by Ruang Koding (2024). Focus: Algorithm design, logic formulation, and data structures.
+
 ## Official Verification Profiles
 - GitHub: https://github.com/AdzrilIlham
 - LinkedIn: https://www.linkedin.com/in/adzril-ilham/

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { motion } from 'motion/react';
+import { createPortal } from 'react-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   Briefcase,
   GraduationCap,
@@ -8,8 +9,64 @@ import {
   Layers,
   ChevronLeft,
   ChevronRight,
+  Award,
+  Eye,
+  X,
+  Sparkles,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+interface Certificate {
+  id: string;
+  title: string;
+  issuer: string;
+  period: string;
+  category: string;
+  image: string;
+  skills: string[];
+  credentialId?: string;
+}
+
+const certificates: Certificate[] = [
+  {
+    id: 'uiux-unissula',
+    title: 'Finalis Perlombaan UI/UX',
+    issuer: 'HIMA Teknik Informatika UNISSULA',
+    period: 'Juli 2025',
+    category: 'Competition',
+    image: '/certificates/cert-uiux-unissula.webp',
+    skills: ['UI/UX Design', 'Design Thinking', 'User Research', 'Figma Prototyping'],
+    credentialId: '59/PESERTA/INFORMATICS EVENT/HM-TIF/FTI/SA/VII/2025',
+  },
+  {
+    id: 'java-oop',
+    title: 'Java for Object Oriented Programming',
+    issuer: 'Wajar.id & Universitas Pendidikan Indonesia (UPI)',
+    period: 'Desember 2024',
+    category: 'OOP & Java',
+    image: '/certificates/cert-java-oop.webp',
+    skills: ['Java', 'OOP Architecture', 'SOLID Principles', 'Design Patterns'],
+  },
+  {
+    id: 'backend-myskill',
+    title: 'Backend Development Fundamental',
+    issuer: 'MySkill Short Class',
+    period: 'September 2024',
+    category: 'Backend',
+    image: '/certificates/cert-backend-myskill.webp',
+    skills: ['Backend Architecture', 'RESTful API', 'Server Logic', 'Database Design'],
+    credentialId: '186940/WEB/LM/09/2024',
+  },
+  {
+    id: 'algo-ruangkoding',
+    title: 'Algoritma Pemrograman Course',
+    issuer: 'Ruang Koding',
+    period: '2024',
+    category: 'Algorithms',
+    image: '/certificates/cert-algo-ruangkoding.webp',
+    skills: ['Algorithms', 'Logic & Flow', 'Data Structures', 'Problem Solving'],
+  },
+];
 
 const education = [
   {
@@ -197,6 +254,26 @@ const CircuitBridge = ({ index }: { index: number }) => {
 export default function Experience() {
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+
+  // Body scroll lock & ESC key listener for certificate modal
+  useEffect(() => {
+    if (!selectedCert) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedCert(null);
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [selectedCert]);
 
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollPosRef = useRef(0);
@@ -423,6 +500,113 @@ export default function Experience() {
               </motion.div>
             ))}
 
+            {/* ================= LICENSES & CERTIFICATIONS ================= */}
+            <div className="mt-12">
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="mb-6 flex items-center justify-between gap-4"
+              >
+                <div className="flex items-center gap-3.5">
+                  <div className="p-2.5 bg-[#1351AA]/10 text-[#1351AA] rounded-xl border border-[#1351AA]/20 shadow-xs">
+                    <Award size={24} />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-[#0F172A]">Licenses & Certifications</h2>
+                    <p className="text-[#0F172A]/70 text-xs sm:text-sm">
+                      Verified credentials, achievements, and technical specializations
+                    </p>
+                  </div>
+                </div>
+
+                <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 bg-[#1351AA]/10 text-[#1351AA] text-xs font-bold rounded-full border border-[#1351AA]/20">
+                  <Sparkles size={13} />
+                  {certificates.length} Verified Credentials
+                </span>
+              </motion.div>
+
+              {/* 2-Column Responsive Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+                {certificates.map((cert) => (
+                  <motion.div
+                    key={cert.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-30px' }}
+                    transition={{ duration: 0.4 }}
+                    onClick={() => setSelectedCert(cert)}
+                    className="group bg-white rounded-2xl border border-[#0F172A]/15 p-4 sm:p-5 shadow-xs hover:shadow-lg hover:border-[#1351AA]/35 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+                  >
+                    <div>
+                      {/* Certificate Thumbnail Preview Container */}
+                      <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-slate-900 border border-slate-200 mb-4 flex items-center justify-center p-1.5">
+                        <img
+                          src={cert.image}
+                          alt={cert.title}
+                          className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500 pointer-events-none select-none"
+                          loading="lazy"
+                        />
+                        {/* Hover Overlay with Eye Icon */}
+                        <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center backdrop-blur-xs">
+                          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 text-[#1351AA] text-xs font-bold shadow-lg">
+                            <Eye size={14} />
+                            Preview Certificate
+                          </span>
+                        </div>
+                        {/* Category Badge */}
+                        <div className="absolute top-2.5 left-2.5 pointer-events-none">
+                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#F59E0B] text-[#0F172A] shadow-md border border-[#F59E0B]/40">
+                            {cert.category}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Header: Issuer + Period */}
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <p className="text-xs font-bold text-primary truncate">
+                          {cert.issuer}
+                        </p>
+                        <span className="inline-flex items-center gap-1 text-[11px] text-[#0F172A]/60 font-medium shrink-0">
+                          <Calendar size={11} />
+                          {cert.period}
+                        </span>
+                      </div>
+
+                      {/* Certificate Title */}
+                      <h3 className="text-base sm:text-lg font-bold text-[#0F172A] group-hover:text-primary transition-colors leading-snug mb-3">
+                        {cert.title}
+                      </h3>
+
+                      {/* Skills Tags */}
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {cert.skills.map((skill, sIdx) => (
+                          <span
+                            key={sIdx}
+                            className="px-2.5 py-0.5 bg-primary/5 text-primary text-[11px] font-medium rounded-md border border-primary/10"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Card Footer: Action button */}
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                      <span className="text-[11px] text-[#0F172A]/50 font-mono truncate">
+                        {cert.credentialId ? `ID: ${cert.credentialId}` : 'Verified Credential'}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-xs font-bold text-primary group-hover:translate-x-0.5 transition-transform shrink-0">
+                        View Certificate
+                        <Eye size={13} />
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
             {/* Circuit cable dropping down from Education into timeline */}
             <div className="flex flex-col items-center justify-center my-6">
               <div className="w-[2px] h-10 bg-linear-to-b from-primary/30 to-primary relative overflow-hidden">
@@ -643,6 +827,93 @@ export default function Experience() {
         </div>
 
       </div>
+
+      {/* Certificate Lightbox / Fullscreen Modal */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {selectedCert && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  onClick={() => setSelectedCert(null)}
+                  className="fixed inset-0 bg-black/80 backdrop-blur-md cursor-pointer"
+                />
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                  className="relative z-10 w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl bg-white border border-slate-200 text-[#0F172A] shadow-2xl overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {/* Modal Header */}
+                  <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-100 bg-white">
+                    <div className="min-w-0 pr-4">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#1351AA]/10 text-[#1351AA] border border-[#1351AA]/20">
+                          {selectedCert.category}
+                        </span>
+                        <span className="text-xs text-[#0F172A]/60 flex items-center gap-1">
+                          <Calendar size={12} />
+                          {selectedCert.period}
+                        </span>
+                      </div>
+                      <h3 className="text-base sm:text-lg font-bold text-[#0F172A] truncate">
+                        {selectedCert.title}
+                      </h3>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setSelectedCert(null)}
+                      aria-label="Tutup modal sertifikat"
+                      className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
+                    >
+                      <X size={18} />
+                    </button>
+                  </div>
+
+                  {/* Modal Image Body (Full View, Non-Cropped) */}
+                  <div className="relative w-full flex-1 overflow-auto bg-slate-950 p-2 sm:p-4 flex items-center justify-center min-h-[300px] max-h-[70vh]">
+                    <img
+                      src={selectedCert.image}
+                      alt={selectedCert.title}
+                      className="max-h-full max-w-full object-contain rounded-lg shadow-lg select-none"
+                    />
+                  </div>
+
+                  {/* Modal Footer Info */}
+                  <div className="px-5 sm:px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
+                    <div>
+                      <p className="font-semibold text-primary">{selectedCert.issuer}</p>
+                      {selectedCert.credentialId && (
+                        <p className="text-[#0F172A]/60 text-[11px] font-mono mt-0.5">
+                          Credential ID: {selectedCert.credentialId}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {selectedCert.skills.map((skill, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2.5 py-0.5 bg-white border border-slate-200 rounded-md text-[11px] text-[#0F172A]/80 font-medium"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
 
       <style>{`
         @keyframes circuit-pulse-flow {

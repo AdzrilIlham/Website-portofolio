@@ -37,8 +37,9 @@ Website ini menggunakan konsep alur cerita vertikal (*story-driven flow*) yang t
      - **ToDoo**: Aplikasi manajemen produktivitas harian berbasis React, TypeScript, dan persistensi lokal.
    - Setiap kartu menampilkan rincian arsitektur, tech stack, dan galeri tangkapan layar antarmuka.
 
-5. **05 — Education & Experience Pipeline**
+5. **05 — Education, Certifications & Experience Pipeline**
    - **Education**: Riwayat akademik di Rekayasa Perangkat Lunak UPI beserta daftar mata kuliah relevan (*Data Structures, Algorithms, OOP, Database Systems*).
+   - **Licenses & Certifications**: Grid kartu sertifikasi terverifikasi (UNISSULA UI/UX Finalist, Wajar.id & UPI Java OOP, MySkill Backend Development, Ruang Koding Algoritma) lengkap dengan modal pop-up pratinjau sertifikat resolusi penuh.
    - **Interconnected Pipeline**: Conveyor *auto-scroll* horizontal berisi riwayat pengalaman organisasi (Advokasi HIMA RPL UPI) dan berbagai proyek rekayasa sistem. Dapat di-hover untuk pause atau di-drag/swipe secara bebas.
 
 6. **06 — Let's Connect (Footer & Contact)**
