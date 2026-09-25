@@ -13,6 +13,7 @@ import {
   Eye,
   X,
   Sparkles,
+  ExternalLink,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -528,7 +529,7 @@ export default function Experience() {
               </motion.div>
 
               {/* 2-Column Responsive Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                 {certificates.map((cert) => (
                   <motion.div
                     key={cert.id}
@@ -537,45 +538,45 @@ export default function Experience() {
                     viewport={{ once: true, margin: '-30px' }}
                     transition={{ duration: 0.4 }}
                     onClick={() => setSelectedCert(cert)}
-                    className="group bg-white rounded-2xl border border-[#0F172A]/15 p-4 sm:p-5 shadow-xs hover:shadow-lg hover:border-[#1351AA]/35 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+                    className="group bg-white rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-xs hover:shadow-xl hover:border-[#1351AA]/40 transition-all duration-300 cursor-pointer flex flex-col justify-between"
                   >
                     <div>
                       {/* Certificate Thumbnail Preview Container */}
-                      <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-slate-900 border border-slate-200 mb-4 flex items-center justify-center p-1.5">
+                      <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-slate-100/90 border border-slate-200/90 mb-4 flex items-center justify-center p-2.5">
                         <img
                           src={cert.image}
                           alt={cert.title}
-                          className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500 pointer-events-none select-none"
+                          className="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300 pointer-events-none select-none"
                           loading="lazy"
                         />
                         {/* Hover Overlay with Eye Icon */}
-                        <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center backdrop-blur-xs">
-                          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 text-[#1351AA] text-xs font-bold shadow-lg">
-                            <Eye size={14} />
+                        <div className="absolute inset-0 bg-[#0F172A]/45 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center backdrop-blur-[2px]">
+                          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#1351AA] text-xs font-bold shadow-lg">
+                            <Eye size={15} />
                             Preview Certificate
                           </span>
                         </div>
                         {/* Category Badge */}
-                        <div className="absolute top-2.5 left-2.5 pointer-events-none">
-                          <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#F59E0B] text-[#0F172A] shadow-md border border-[#F59E0B]/40">
+                        <div className="absolute top-3 left-3 pointer-events-none">
+                          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#1351AA] text-white shadow-xs">
                             {cert.category}
                           </span>
                         </div>
                       </div>
 
                       {/* Header: Issuer + Period */}
-                      <div className="flex items-center justify-between gap-2 mb-1.5">
-                        <p className="text-xs font-bold text-primary truncate">
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <p className="text-xs font-semibold text-[#1351AA] uppercase tracking-wider truncate">
                           {cert.issuer}
                         </p>
-                        <span className="inline-flex items-center gap-1 text-[11px] text-[#0F172A]/60 font-medium shrink-0">
-                          <Calendar size={11} />
+                        <span className="inline-flex items-center gap-1.5 text-xs text-slate-500 font-medium shrink-0">
+                          <Calendar size={13} />
                           {cert.period}
                         </span>
                       </div>
 
                       {/* Certificate Title */}
-                      <h3 className="text-base sm:text-lg font-bold text-[#0F172A] group-hover:text-primary transition-colors leading-snug mb-3">
+                      <h3 className="text-lg font-bold text-[#0F172A] group-hover:text-[#1351AA] transition-colors leading-snug mb-3">
                         {cert.title}
                       </h3>
 
@@ -584,7 +585,7 @@ export default function Experience() {
                         {cert.skills.map((skill, sIdx) => (
                           <span
                             key={sIdx}
-                            className="px-2.5 py-0.5 bg-primary/5 text-primary text-[11px] font-medium rounded-md border border-primary/10"
+                            className="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-lg border border-slate-200/80"
                           >
                             {skill}
                           </span>
@@ -593,13 +594,13 @@ export default function Experience() {
                     </div>
 
                     {/* Card Footer: Action button */}
-                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-                      <span className="text-[11px] text-[#0F172A]/50 font-mono truncate">
+                    <div className="pt-3.5 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
+                      <span className="text-slate-500 truncate font-medium">
                         {cert.credentialId ? `ID: ${cert.credentialId}` : 'Verified Credential'}
                       </span>
-                      <span className="inline-flex items-center gap-1 text-xs font-bold text-primary group-hover:translate-x-0.5 transition-transform shrink-0">
+                      <span className="inline-flex items-center gap-1.5 font-semibold text-[#1351AA] group-hover:translate-x-0.5 transition-transform shrink-0">
                         View Certificate
-                        <Eye size={13} />
+                        <Eye size={14} />
                       </span>
                     </div>
                   </motion.div>
@@ -848,52 +849,72 @@ export default function Experience() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: 15 }}
                   transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-                  className="relative z-10 w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl bg-white border border-slate-200 text-[#0F172A] shadow-2xl overflow-hidden"
+                  className="relative z-10 w-full max-w-4xl max-h-[94vh] flex flex-col rounded-3xl bg-white border border-slate-200 text-[#0F172A] shadow-2xl overflow-hidden"
                   onClick={(e) => e.stopPropagation()}
                 >
                   {/* Modal Header */}
-                  <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-100 bg-white">
+                  <div className="shrink-0 flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-200 bg-white">
                     <div className="min-w-0 pr-4">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#1351AA]/10 text-[#1351AA] border border-[#1351AA]/20">
+                        <span className="px-3 py-0.5 rounded-full text-xs font-semibold bg-[#1351AA]/10 text-[#1351AA] border border-[#1351AA]/20">
                           {selectedCert.category}
                         </span>
-                        <span className="text-xs text-[#0F172A]/60 flex items-center gap-1">
-                          <Calendar size={12} />
+                        <span className="text-xs text-slate-500 font-medium flex items-center gap-1">
+                          <Calendar size={13} />
                           {selectedCert.period}
                         </span>
                       </div>
-                      <h3 className="text-base sm:text-lg font-bold text-[#0F172A] truncate">
+                      <h3 className="text-base sm:text-xl font-bold text-[#0F172A] truncate">
                         {selectedCert.title}
                       </h3>
                     </div>
 
-                    <button
-                      type="button"
-                      onClick={() => setSelectedCert(null)}
-                      aria-label="Tutup modal sertifikat"
-                      className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer shrink-0"
-                    >
-                      <X size={18} />
-                    </button>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <a
+                        href={selectedCert.image}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-xs font-semibold text-slate-700 transition-colors"
+                        title="Buka gambar sertifikat resolusi penuh di tab baru"
+                      >
+                        <ExternalLink size={14} />
+                        <span className="hidden sm:inline">Buka Full</span>
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedCert(null)}
+                        aria-label="Tutup modal sertifikat"
+                        className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer"
+                      >
+                        <X size={18} />
+                      </button>
+                    </div>
                   </div>
 
-                  {/* Modal Image Body (Full View, Non-Cropped) */}
-                  <div className="relative w-full flex-1 overflow-auto bg-slate-950 p-2 sm:p-4 flex items-center justify-center min-h-[300px] max-h-[70vh]">
-                    <img
-                      src={selectedCert.image}
-                      alt={selectedCert.title}
-                      className="max-h-full max-w-full object-contain rounded-lg shadow-lg select-none"
-                    />
+                  {/* Modal Image Body (Full View, Non-Cropped Guaranteed) */}
+                  <div className="flex-1 w-full min-h-0 overflow-y-auto bg-slate-900/95 p-3 sm:p-6 flex items-center justify-center">
+                    <div className="relative max-w-full flex items-center justify-center">
+                      <img
+                        src={selectedCert.image}
+                        alt={selectedCert.title}
+                        className="max-w-full max-h-[66vh] sm:max-h-[72vh] w-auto h-auto object-contain rounded-xl shadow-2xl select-none mx-auto block"
+                        style={{
+                          maxHeight: 'min(72vh, 760px)',
+                          maxWidth: '100%',
+                          width: 'auto',
+                          height: 'auto',
+                        }}
+                      />
+                    </div>
                   </div>
 
                   {/* Modal Footer Info */}
-                  <div className="px-5 sm:px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
+                  <div className="shrink-0 px-5 sm:px-6 py-4 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
                     <div>
-                      <p className="font-semibold text-primary">{selectedCert.issuer}</p>
+                      <p className="font-bold text-[#1351AA]">{selectedCert.issuer}</p>
                       {selectedCert.credentialId && (
-                        <p className="text-[#0F172A]/60 text-[11px] font-mono mt-0.5">
-                          Credential ID: {selectedCert.credentialId}
+                        <p className="text-slate-500 text-xs mt-0.5">
+                          Nomor Sertifikat: {selectedCert.credentialId}
                         </p>
                       )}
                     </div>
@@ -901,7 +922,7 @@ export default function Experience() {
                       {selectedCert.skills.map((skill, idx) => (
                         <span
                           key={idx}
-                          className="px-2.5 py-0.5 bg-white border border-slate-200 rounded-md text-[11px] text-[#0F172A]/80 font-medium"
+                          className="px-2.5 py-1 bg-white border border-slate-200 rounded-lg text-xs text-slate-700 font-medium shadow-2xs"
                         >
                           {skill}
                         </span>
